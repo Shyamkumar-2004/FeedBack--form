@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .feedback {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .feedback:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Feedback List</h2>
+        <% feedbacks.forEach(function(feedback) { %>
+            <div class="feedback">
+                <ul>
+                    <li>
+                        <strong>Name:</strong> <%= feedback.Name %><br>
+                        <strong>Email:</strong> <%= feedback.Email %><br>
+                        <strong>Rating:</strong> <%= feedback.Rating %><br>
+                        <strong>Feedback:</strong> <%= feedback.Feedback %><br>
+                        <a href="/edit-feedback/<%= feedback._id %>" class="btn">Edit Feedback</a>
+                        <form action="/delete-feedback/<%= feedback._id %>" method="POST" style="display: inline;">
+                            <button type="submit" class="btn" onclick="return confirm('Are you sure you want to delete this feedback?')">Delete</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
